@@ -23,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     const fetchMenus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/menu/all');
+        const response = await axios.get('https://backend-menu-4nqs.onrender.com/api/menu/all');
         console.log('Fetched Menus:', response.data);
         setData(response.data);
         setSelectedCategory(response.data[0]); 
