@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 type Props = {};
 
 export default function Navbar({}: Props) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to toggle menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // Use 'boolean' instead of 'Boolean'
 
   const menuItems = [
     { id: 1, name: "Home" },
@@ -24,14 +24,13 @@ export default function Navbar({}: Props) {
       {/* Logo Section */}
       <div className="flex items-center gap-4 relative top-9">
         <div>
-        <Image
-  src="/logo.png"
-  alt="logo"
-  width={70}
-  height={70}
-  className="w-[50px] h-[40px] sm:w-12 sm:h-12 lg:w-[70px] lg:h-[70px]"
-/>
-
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={70}
+            height={70}
+            className="w-[50px] h-[40px] sm:w-12 sm:h-12 lg:w-[70px] lg:h-[70px]"
+          />
         </div>
         <div className="lg:flex lg:flex-col leading-none hidden ">
           <p className="text-[34px]">
@@ -46,14 +45,15 @@ export default function Navbar({}: Props) {
         {menuItems.map((menuItem) => (
           <li
             key={menuItem.id}
-            className={`uppercase leading-custom tracking-custom text-[14px] ${menuItem.name === "Menu" ? 'text-[#0796EF]' : 'text-[#F5f5f5]'}`}
+            className={`uppercase leading-custom tracking-custom text-[14px] ${
+              menuItem.name === "Menu" ? "text-[#0796EF]" : "text-[#F5f5f5]"
+            }`}
           >
             {menuItem.name}
           </li>
         ))}
       </ul>
 
-      {/* Hamburger Icon on small screens */}
       <GiHamburgerMenu
         onClick={handleMenuToggle}
         className="lg:hidden text-[#857878] text-2xl absolute right-6 top-6 cursor-pointer"
@@ -65,7 +65,9 @@ export default function Navbar({}: Props) {
           {menuItems.map((menuItem) => (
             <li
               key={menuItem.id}
-              className={`uppercase leading-custom tracking-custom text-[14px] ${menuItem.name === "Menu" ? 'text-[#0796EF]' : 'text-[#F5f5f5]'}`}
+              className={`uppercase leading-custom tracking-custom text-[14px] ${
+                menuItem.name === "Menu" ? "text-[#0796EF]" : "text-[#F5f5f5]"
+              }`}
             >
               {menuItem.name}
             </li>

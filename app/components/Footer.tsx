@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   FaPhone,
   FaEnvelope,
@@ -9,18 +10,18 @@ import { LuYoutube } from "react-icons/lu";
 import { TbBrandFacebook } from "react-icons/tb";
 
 const Footer = () => {
-  
-
   return (
     <footer className="bg-black text-gray-400 ">
       <div className="max-w-7xl mx-auto px-4 ">
         {/* Footer Content */}
         <div className="flex flex-wrap items-center justify-center gap-3 text-center mt-20 ">
-        <div className="border-2 rounded-xl w-[352px] relative  py-4 px-3 block lg:hidden  ">
-            <img
+          <div className="border-2 rounded-xl w-[352px] relative  py-4 px-3 block lg:hidden  ">
+            <Image
               src="/logo.png"
-              alt=""
-              className="  w-[70px] h-[70px] absolute -top-9 left-28 "
+              alt="Logo"
+              className="w-[70px] h-[70px] absolute -top-9 left-28"
+              width={70}
+              height={70}
             />
             <p className="text-[34px] text-white mt-6">
               <span className="text-[#0796EF]">DEEP</span> NET
@@ -52,10 +53,12 @@ const Footer = () => {
           </div>
 
           <div className="border-2 rounded-xl w-[352px] relative  py-4 px-3 hidden lg:block ">
-            <img
+            <Image
               src="/logo.png"
-              alt=""
-              className="w-[50px] h-[40px] sm:w-12 sm:h-12 lg:w-[70px] lg:h-[70px] absolute -top-9 left-36 "
+              alt="Logo"
+              className="w-[50px] h-[40px] sm:w-12 sm:h-12 lg:w-[70px] lg:h-[70px] absolute -top-9 left-36"
+              width={70}
+              height={70}
             />
             <p className="text-[34px] text-white mt-6">
               <span className="text-[#0796EF]">DEEP</span> NET
@@ -100,7 +103,6 @@ const Footer = () => {
           <a>Privacy Policy</a>
         </div>
       </div>
-      
     </footer>
   );
 };
