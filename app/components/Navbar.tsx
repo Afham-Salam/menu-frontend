@@ -3,10 +3,10 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-type Props = {};
 
-export default function Navbar({}: Props) {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); 
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean | null>(false); 
 
   const menuItems = [
     { id: 1, name: "Home" },
