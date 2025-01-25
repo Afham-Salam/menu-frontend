@@ -61,7 +61,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Items */}
       {isMenuOpen && (
-        <ul className="lg:hidden flex flex-col gap-4 py-4 absolute bg-[#121618] w-full top-14 left-0 text-center">
+        <ul className="lg:hidden flex flex-col gap-4 py-4 absolute bg-[#121618] w-full h-screen top-11 left-0 text-center z-50">
           {menuItems.map((menuItem) => (
             <li
               key={menuItem.id}
