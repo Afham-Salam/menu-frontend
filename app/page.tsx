@@ -53,8 +53,8 @@ export default function Home() {
         <div className="lg:w-[45%] text-center px-3">
           <p className="lg:text-[16px] tracking-wide text-[16px] font2">
             Please take a look at our menu featuring food, drinks, and brunch.
-            If you'd like to place an order, use the "Order Online" button
-            located below the menu.
+            If you&apos;d like to place an order, use the &quot;Order
+            Online&quot; button located below the menu.
           </p>
         </div>
       </div>
@@ -83,11 +83,11 @@ export default function Home() {
           <div className="border border-white lg:w-[90%] py-10 lg:px-16 px-5 mt-20 relative">
             <div>
               <Image
-                src="/glass1.png" 
-                alt="Glass Image" 
+                src="/glass1.png"
+                alt="Glass Image"
                 className="lg:w-[100px] lg:h-[150px] h-[120px] w-[80px] absolute lg:-left-7 lg:-top-20 -top-2 -left-3"
-                width={100} 
-                height={150} 
+                width={100}
+                height={150}
               />
             </div>
 

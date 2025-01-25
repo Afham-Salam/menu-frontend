@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 type Props = {};
 
 export default function Navbar({}: Props) {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); // Use 'boolean' instead of 'Boolean'
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false); 
 
   const menuItems = [
     { id: 1, name: "Home" },
