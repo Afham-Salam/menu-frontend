@@ -1,101 +1,125 @@
-import Image from "next/image";
+"use client"
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+type MenuItem = {
+  _id: string;
+  name: string;
+  description: string;
+  price: string;
+};
+
+type MenuCategory = {
+  _id: string;
+  name: string;
+  items: MenuItem[];
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [datas, setData] = useState<MenuCategory[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<MenuCategory | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const fetchMenus = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/menu/all');
+        console.log('Fetched Menus:', response.data);
+        setData(response.data);
+        setSelectedCategory(response.data[0]); 
+      } catch (error) {
+        console.error('Error fetching menus:', error);
+      }
+    };
+
+    fetchMenus();
+  }, []);
+
+  const handleCategoryClick = (category: MenuCategory) => {
+    setSelectedCategory(category);
+  };
+
+  return (
+    <>
+      <div className="menuImg menuImgSM w-full lg:h-[311px] h-[231px] flex flex-col justify-center items-center">
+        <h1 className="lg:text-[75px] text-[40px] font-semibold text-shadow-burgundy">
+          MENU
+        </h1>
+        <div className="lg:w-[45%] text-center px-3">
+          <p className="lg:text-[16px] tracking-wide text-[16px] font2">
+            Please take a look at our menu featuring food, drinks, and brunch.
+            If you'd like to place an order, use the "Order Online" button
+            located below the menu.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+
+      <div className="bg2 w-full h-[75px] flex gap-4 justify-center items-center">
+        {datas.map((data) => (
+         <button
+         key={data._id}
+         className={`border-2 text-white lg:px-8 lg:py-3 py-2 px-4 border-[#0796EF] transition-all duration-300 uppercase ${
+           selectedCategory?._id === data._id ? "bg-[#0796EF]" : "bg-transparent"
+         }`}
+         onClick={() => handleCategoryClick(data)}
+       >
+         {data.name}
+       </button>
+        ))}
+      </div>
+
+      <div className="bg3 w-full h-[672px]">
+        <div className="float-left leftImg h-[672px] w-[149px] hidden lg:block"></div>
+        <div className="float-right rightImg h-[672px] w-[149px] hidden lg:block"></div>
+
+        <div className="flex items-center justify-center lg:h-[500px] px-3">
+        <div className="border border-white lg:w-[90%] py-10 lg:px-16 px-5 mt-20 relative">
+          <div>
+            <img src="/glass1.png" className="lg:w-[100px] lg:h-[150px] h-[120px] w-[80px] absolute lg:-left-7 lg:-top-20 -top-2 -left-3" />
+          </div>
+
+          {selectedCategory && (
+          <div key={selectedCategory._id}>
+            <div className="flex lg:gap-8 gap-2 justify-center items-center">
+              <hr className="w-12 border-t-2 border-[#857878]" />
+              <h2 className="text-center text-[30px] lg:text-[50px] font-semibold lg:px-4 uppercase">
+                {selectedCategory.name}
+              </h2>
+              <hr className="w-12 border-t-2 border-[#857878]" />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:text-[26px] text-[20px] gap-5 mt-7">
+              {selectedCategory.items.map((item) => (
+               <div key={item._id} className="text-left">
+               <div className="flex items-center">
+                 <span className="font-semibold lg:text-[20px] text-[17px]  uppercase flex-1">
+                   {item.name}
+                 </span>
+                 <span className="dots flex-1  mt-3 "></span>
+                 <span className="font-semibold   lg:text-[20px] text-[17px] uppercase ml-2">
+                   $ {item.price}
+                 </span>
+               </div>
+               <p className="font2 lg:text-[16px] text-[13px]">
+                 {item.description}
+               </p>
+             </div>
+             
+              ))}
+            </div>
+          </div>
+        )}
+
+         
+
+          <div>
+            <img src="/glass2.png" className="lg:w-[100px] lg:h-[120px] h-[90px] w-[70px] absolute lg:-right-2 lg:-bottom-7 right-0 -bottom-2" />
+          </div>
+        </div>
+      </div>
+      </div>
+
+      
+    </>
   );
 }

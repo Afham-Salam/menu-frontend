@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: black;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: black;
     --foreground: #ededed;
   }
 }
@@ -17,5 +19,71 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Oswald', sans-serif;
+}
+
+.menuImg{
+  background-image: url('/menuBg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.menuImgSM{
+  background-image: url('/menuBg-SM.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+
+.bg2{
+  background-image: url('/bg2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.bg3{
+  background-image: url('/bg3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.leftImg{
+  background-image: url('/leftImg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.rightImg{
+  background-image: url('/rightImg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.font2{
+  font-family: 'Kelly Slab', sans-serif;
+  color: #BBBBBB;
+}
+
+.dots::before {
+  content: '';
+  display: block;
+  border-bottom: 4px dotted #fff;
+  width: 100%;
+ 
+}
+
+@media (min-width: 1024px) {
+  .menuImgSM {
+    background-image: url('/menuBg.png'); /* Update with the desired background for larger screens */
+  }
+  .dots::before {
+    content: '';
+    display: block;
+    border-bottom: 5px dotted #fff;
+    height: 1px;
+    width: 220px;
+    /* margin: 0px 10px; */
+  }
 }
