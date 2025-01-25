@@ -5,7 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const oswaldFont = Oswald({
-  variable: "--font-oswald", // Custom CSS variable
+  variable: "--font-oswald", 
+  subsets: ["latin"],
  
   weight: ["400", "700"], // Specify the font weights (adjust as needed)
 });

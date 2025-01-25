@@ -76,7 +76,7 @@ body {
 
 @media (min-width: 1024px) {
   .menuImgSM {
-    background-image: url('/menuBg.png'); /* Update with the desired background for larger screens */
+    background-image: url('/menuBg.png'); 
   }
   .dots::before {
     content: '';

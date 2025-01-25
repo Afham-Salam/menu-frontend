@@ -2,9 +2,6 @@ import {
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaFacebook,
-  FaTwitter,
-  FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
@@ -103,6 +100,7 @@ const Footer = () => {
           <a>Privacy Policy</a>
         </div>
       </div>
+      
     </footer>
   );
 };
